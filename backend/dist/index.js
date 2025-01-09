@@ -17,16 +17,13 @@ const sdk_1 = __importDefault(require("@anthropic-ai/sdk"));
 const anthropic = new sdk_1.default();
 function main() {
     return __awaiter(this, void 0, void 0, function* () {
-        const msg = yield anthropic.messages.create({
-            model: "claude-3-5-sonnet-20241022",
-            max_tokens: 1000,
-            temperature: 0,
-            messages: [{
-                    role: 'user',
-                    content: "who is greatest teacher in the world?"
-                }]
+        anthropic.messages.stream({
+            messages: [{ role: 'user', content: "who is the best teacher in india?" }],
+            model: 'claude-3-5-sonnet-20241022',
+            max_tokens: 1024,
+        }).on('text', (text) => {
+            console.log(text);
         });
-        console.log(msg);
     });
 }
 main();
