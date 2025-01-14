@@ -61,3 +61,8 @@ app.post("/chat", async (req, res) => {
     });
 })
 app.listen(3000);
+
+
+
+
+// hello i want u to build an todo application that should be aesthetic and have all the features in it it should be fully working and best looking
