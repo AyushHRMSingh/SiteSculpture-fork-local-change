@@ -156,6 +156,12 @@ export function Builder() {
     });
     setTemplateSet(true);
     
+    console.log("reponse code: ", response.status);
+    if (response.status !== 200) {
+      console.error("Error in template generation");
+      return;
+    }
+
     const {prompts, uiPrompts} = response.data;
 
     setSteps(parseXml(uiPrompts[0]).map((x: Step) => ({
@@ -172,6 +178,9 @@ export function Builder() {
     })
 
     setLoading(false);
+
+    console.log("stepresponse:-")
+    console.log(stepsResponse.data.response);
 
     setSteps(s => [...s, ...parseXml(stepsResponse.data.response).map(x => ({
       ...x,
